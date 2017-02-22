@@ -13,13 +13,14 @@ body
 
 p
 { padding: 0 0 20px 0;
-  line-height: 1.7em;}
+  line-height: 2em;
+  font-size:15px;}
 
 img
 { border: 0;}
 
 h1, h2, h3, h4, h5, h6 
-{ font: normal 175% Tahoma, Verdana, Segoe, sans-serif;
+{ font: normal 200% Tahoma, Verdana, Segoe, sans-serif;
   font-weight: bold;
   color: #EC9017;
   margin: 0 0 15px 0;
