@@ -25,9 +25,32 @@
 
         <!-- insert the page content here -->
         <h1>Arduno based NAND chip reader</h1>
-        <h5 style="margin-bottom:-20px">Febuary 25 2017</h5>
+        <h5 style="margin-bottom:-20px">Febuary 28 2017</h5>
         <p>
+        I have never been a big fan of using Arduino's. They do have their place if you need to develop a simple fast prototype proof of concept. However, there are many other development boards based on other architectures that are much more flexible and much more powerful in the same price range. One of the reasons why Arduino is so popular is ease of use for someone who does not have much experience with hardware projects. Also there exist a vast library that is very easy import directly from the IDE. Chances are if you are doing a project in the Arduino environment, someone has written a library that will cut down on the amount of time you have to spend coding or looking at a datasheet. I think this is both an advantage and disadvantage. It is easy to sacrifice performance when things are obstructed away and you have no idea what is going on under the hood.
+        </p>
 
+        <p>
+        One of my current projects is reverse engineering a head unit (aka radio) like the model in my vehicle. After spending some time searching on the PCB for an open serial connection that could possibly give me a shell, I decided to try to read the NAND memory. This is something that I have no experience doing, but I know at some point in my career I will need this skill so now is a perfect time to learn. I done some searching for ROM programmers/readers online to check the prices. I discovered some Chinese made readers on Ebay for $150 - $200. One of the issues with these readers is they only support up to 4GB. Another options (perhaps the best for anyone doing security research) is to invest in a <a href="http://www.xeltek.com/universal-programmers/superpro-6100-universal-ic-chip-device-programmer/">Xeltek</a>. But at $1600 plus the price of each adapter, it is hard to justify the purchase.
+        </p>
+
+        <p>
+        I have a tool I am working on <a target="_parent" href="http://hwreblog.com/projects/sret.html">SRET</a> that will eventually be able to read both NAND and NOR flash chips, but it is nowhere near in a state to test such a feature. I did want something that would allow me to develop a quick tool over the weekend with equipment that I already have. One option is a couple of FPGA dev boards I have lying around. This would no doubt be the best option, but it might require a bit more time than I would want to put into the project. Another options would be throwing something together with a dsPIC dev board I put together a couple of years ago. While this would still be a better option that the Arduino, I wanted to build something that someone who does not have much experience in embedded development could use without too much modification. 
+        </p>
+
+        <p>
+         The chip in question. <br/><img src="../style/chip.jpg" alt="nand_chip" style="width:75%; height:75%"><br/> I used hot air to remove the chip. After removing the chip and letting it cool a moment, I gave it in a quick alcohol bath to remove any leftover flux residue from the pins.<br/><img src="../style/chip_off.jpg" alt="nand_flash" style="width:75%; height:75%"><br/>  The only thing I would need to do the project is an adapter to hold the chip, and wire it to the Arduino. I found a $7 TSOP 48 socket that came with a PCB breakout. The chip fits nicely inside.
+         <br/><img src="../style/chip_in_socket.jpg" alt="nand_rom" style="width:75%; height:75%"><br/> 
+         After taking the chip off and locking it into the socket, I can easily wire the adapter to the Arduino. Time to get programming. 
+        </p>
+
+        <p>
+        <br/><img src="../style/firstTest.png" alt="NAND Flash Dump" style="width:50%; height:50%; float:right"><br/> 
+        One thing that is very important when doing embedded development to have a clear understanding of how the device you are either programming or communicating with operates. After reading though a couple of NAND datasheets I though together a quick project that would read the chip's ID and some page data from the chip. 
+
+        </p>
+
+        <p style="clear:both">
         </p>
 
         <p style="float:left">
@@ -38,10 +61,7 @@
         <img src="../style/opensourcehardware.png" alt="twitter" style="width:75px; height:80px; margin-left:75px">
         <hr style="clear:left; margin-top:25px">
         <!-- insert the page content here -->
-        
 
-      
-      
       </div>
     </div>
     <div id="footer">
