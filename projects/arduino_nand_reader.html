@@ -29,7 +29,7 @@
       </div>
     </div>
     <div id="site_content">
-      <iframe src="http://www.hwreblog.com/sidebar.htm" style="border:none; height:500px"></iframe>
+      <base target="_parent" /><iframe src="http://www.hwreblog.com/sidebar.htm" style="border:none; height:500px; float:right" ></iframe>
       <div id="content">
 
 
@@ -49,7 +49,6 @@
         I have a tool I am working on <a target="_parent" href="http://hwreblog.com/projects/sret.html">SRET</a> that will eventually be able to read both NAND and NOR flash chips, but it is nowhere near in a state to test such a feature. I did want something that would allow me to develop a quick tool over the weekend with equipment that I already have. One option is using one of the FPGA boards I have lying around. This would no doubt be the best option I could interface it with something like an SD card, but it might require a bit more time than I would want to put into the project. Another option would be throwing something together with a dsPIC dev board I built a couple of years ago. While this would still be a better option that the Arduino (more on that later), I wanted to build something that could be used by someone who does not have much experience in embedded development without too much modification. I chose an Arduino 2560 due to the high number of pins that would allow me to match the pin number on the chip, with the pin number on the Arduino.
         </p>
 
-        <div style="width:1050px">
         <p>
          The chip in question. 
          <br/><center><a href="../style/chip.jpg"><img src="../style/chip.jpg" alt="nand_chip" style="width:75%; height:75%; margin-top:25px"></a></center><br/> I used hot air to remove the chip. After removing the chip and letting it cool a moment, I gave it in a quick alcohol bath to remove any leftover flux residue from the pins.
@@ -92,8 +91,6 @@
         Some data in French that was pulled from the NAND.
           <br/><center><a href="../style/french.png"><img src="../style/french.png" alt="nand_rom" style="width:75%; height:75%; margin-top:25px"></a></center><br/> 
         </p>
-
-        </div>
 
         <p style="clear:both;float:left">
         <a href="https://www.micron.com/~/media/documents/products/technical-note/nand-flash/tn2919_nand_101.pdf">Introduction to NAND flash</a>
