@@ -79,7 +79,7 @@
         <p>
         I wrote a very simple loop that will toggle a pin as quickly as possible. Attaching a logic analyzer shows the pin taking 7.625us to toggle, and 15.46us to make a full cycle. When you need hundreds of thousands of cycles to dump the memory contents, that time adds up quickly.
         <br/><center><a href="../style/arduinoLED.png"><img src="../style/arduinoLED.png" alt="nand_rom" style="width:75%; height:75%; margin-top:25px"></a></center><br/> 
-        Now let's compare the performance to that dsPIC dev board I mentioned earlier. Remember the Arduino has a 16Mhz oscillator driving the controller. The dsPIC dev board has a dsPIC33ep512gp806 with a internal 7.37Mhz RC oscillator. One major advantage of this chip is it has a built in PLL that can make the chip operate at speeds up to 70Mhz. However, I wanted to see the performance at the default setting so I left it at 7.37Mhz. The performance of the PIC in default mode is much better than the performance of the Arduino. Toggling was cut down to 4.375us and 8.70us for a full cycle.
+        Now let's compare the performance to that dsPIC dev board I mentioned earlier. Remember the Arduino has a 16Mhz oscillator driving the controller. The dsPIC dev board has a dsPIC33ep512gp806 with a internal 7.37Mhz RC oscillator. One major advantage of this chip is it has a built in PLL that can make the chip operate at speeds up to 70Mhz. However, I wanted to see the performance at the default setting so I left it at 7.37Mhz. The performance of the PIC in default mode is much better in comparison than the performance of the Arduino. Toggling was cut down to 4.375us and 8.70us for a full cycle.
         <br/><center><a href="../style/picLED.png"><img src="../style/picLED.png" alt="nand_rom" style="width:75%; height:75%; margin-top:25px"></a></center><br/> 
         </p>
 
@@ -98,7 +98,7 @@
         <p style="clear:both;float:left">
         <a href="https://www.micron.com/~/media/documents/products/technical-note/nand-flash/tn2919_nand_101.pdf">Introduction to NAND flash</a>
         <br>
-        <a href="https://github.com/james-tate/arduino_rom_reader">Code</a>
+        <a href="https://github.com/james-tate/arduino_nand_reader">Code</a>
         </p>
         <img src="../style/opensourcehardware.png" alt="twitter" style="width:75px; height:80px; margin-left:75px">
         <hr style="clear:left; margin-top:25px; width:1050px">
