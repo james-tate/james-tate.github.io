@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>HWREBLOG</title>
+  <meta name="description" content="hwreblog embedded system design and reverse engineering" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="http://hwreblog.com/style/style.css" title="style" />
+</head>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58387431-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <a href="http://www.hwreblog.com" style="text-decoration:none"><h1 style="font-size: 65px; font-weight: bold; color:#EC9017">HWREBLOG</h1></a>
+        </div>
+      </div>
+    </div>
+    <div id="site_content">
+      <base target="_parent" /><iframe src="http://www.hwreblog.com/sidebar.htm" style="border:none; height:500px; float:right" ></iframe>
+      <div id="content">
+
+
+
+        <!-- insert the page content here -->
+        <h1>IEBus Analyzer</h1>
+        <h5 style="margin-bottom:-20px">June 21 2017</h5>
+
+        <p>The IEBus is a communications protocol used in a number of vehicles to send information between human interfacing devices such as a display and radio headunit. The physical layer uses differential pair, and is capable of allowing multiple devices to create a network. Some manufacturers call the IEBus by other names. For instance, Honda GA-NET II; Toyota AVC-LAN. The NEC <a href="http://elinux.org/images/2/2c/UPD6708.pdf">uPD6708</a> chip is the most comman controller. However if emulation is needed any chip capable of producing a differential signal could be used, such as an inexpensive RS485 chip. </p> 
+
+        <p>The analyzer was written using the Saleae SDK. The analyzer is avaliable on my <a href="https://github.com/james-tate/IEBusAnalyzer">github</a> if you would like to try it out for yourself. For more information on the IEBus protocol checkout: <a href="https://en.wikipedia.org/wiki/IEBus">IEBus</a></p>
+
+        <p><a href="https://raw.githubusercontent.com/james-tate/IEBusAnalyzer/master/demo2.png"><img src="https://raw.githubusercontent.com/james-tate/IEBusAnalyzer/master/demo2.png" alt="nand_flash" style="width:75%; height:75%; margin-top:-125px"></a></p>
+        <!-- insert the page content here -->
+        
+
+      
+      
+      </div>
+    </div>
+    <div id="footer">
+      <a href="https://twitter.com/realjamestate"><img src="http://www.hwreblog.com/style/twitter.png" alt="twitter" style="width:25px; height:25px"></a>&nbsp;&nbsp;
+      <a href="https://github.com/james-tate"><img src="http://www.hwreblog.com/style/github1.png" alt="twitter" style="width:25px; height:25px"></a>
+      <br><br>
+      Copyright &copy; james.tate 2017
+    </div>
+  </div>
+</body>
+</html>
