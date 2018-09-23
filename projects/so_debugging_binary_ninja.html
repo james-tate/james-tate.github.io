@@ -35,7 +35,7 @@
       <div id="content">
         <!-- insert the page content here -->
         <h1>Debugging Shared Libraries with Binary Ninja</h1>
-        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the application or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. There are a few issues that need to be solved before this is possible. First the memory location of the shared library will be unknown until the application or process has been started, and second the disassembler will treat the application and shared library as seperate instances. So in order to use the disassembler for debugging while running dynamic analysis we will need a way to work around these issues. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>, 
+        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the application or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. There are a few issues that need to be solved before this is possible. First the memory location of the shared library will be unknown until the application or process has been started, and second the disassembler will treat the application and shared library as seperate instances. So in order to use the disassembler for debugging while running dynamic analysis we will need a way to work around these issues. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using gdb, <a href="https://binary.ninja/">Binary Ninja</a>, 
           <a href="https://github.com/snare/voltron">Voltron</a>, and the plugin for Binary Ninja 
             <a href="https://github.com/snare/binjatron">binjatron</a>.
         </p>
@@ -52,7 +52,7 @@
         <a href="http://www.hwreblog.com/style/setup/ldd.png"><img src="http://www.hwreblog.com/style/setup/ldd.png"></a> <br>
         </p>
 
-        <p>I then pull these programs into Binary Ninja and verify things look correct. Below we can see the main program, and the foo shared library loaded into binary ninja.<br>
+        <p>First, I pull these programs into Binary Ninja and verify things look correct. Below we can see the main program, and the foo shared library loaded into binary ninja.<br>
         <a href="http://www.hwreblog.com/style/bn_setup/bn_load.png"><img src="http://www.hwreblog.com/style/bn_setup/bn_load.png" style="width:1000px; height:500px"></a> <br>
         <a href="http://www.hwreblog.com/style/bn_setup/lib_dis.png"><img src="http://www.hwreblog.com/style/bn_setup/lib_dis.png"></a> <br><br>
         Everything looks correct so now I can start the gdbserver on the target using 'gdbserver host:2345 main, and connect to session using '<a href="https://www.linaro.org/latest/downloads/">arm-linux-gnueabihf-gdb</a>' and 'target remote target-ip:2345'.<br>
@@ -62,17 +62,35 @@
         <p>After the connection has been made, we can go back to Binary Ninja and sync to the Voltron session. 
           <a href="http://www.hwreblog.com/style/bn_setup/voltron_sync.png"><img src="http://www.hwreblog.com/style/bn_setup/voltron_sync.png" style="width:1000px; height:500px"></a> <br><br>
           In order to verify the sync is working correctly, we can set a breakpoint in main and step though.
-          <a href="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png"><img src="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png" style="width:1000px; height:500px"></a> <br>
-          As we step though the program in gdb, binjatron will highlight the current PC in Binary Ninja which can be seen below.<br>
+          <a href="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png"><img src="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png" style="width:1000px; height:500px"></a> <br><br>
+          As I step though the program in gdb, binjatron will highlight the current PC in Binary Ninja which can be seen below.<br>
           <a href="http://www.hwreblog.com/style/bn_setup/st1.png"><img src="http://www.hwreblog.com/style/bn_setup/st1.png"></a> <br>
           <a href="http://www.hwreblog.com/style/bn_setup/st2.png"><img src="http://www.hwreblog.com/style/bn_setup/st2.png"></a> <br>
           <a href="http://www.hwreblog.com/style/bn_setup/st3.png"><img src="http://www.hwreblog.com/style/bn_setup/st3.png"></a> <br><br>
           If we continue this until we get to foo() in plt setting up to make the external function call. More information on this can be found in this <a href="https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html">article</a>.
         </p>
 
+        <h4>Finding the shared library memory location</h4>
 
+        <p>Now that I have verified everything is working nicely together, I can setup to perform dynamic analysis on the shared library. As stated eariler, if I simply continued stepping the application, once main calls foo() I will lose the current instruction highlighting due to the shared library code not being in the application's binary. I can easily view the disassemly in Binary Ninja in another instance, but the voltron link will not sync since the address is offset. The simple solution is to offset the loading address of the shared library and resync voltron. First the offset needs to be obtained somehow. While there can be many ways to do this, in this case I simply place a breakpoint at foo(). Your approach could be differant. Below we can see this breakpoint gives us an address of 0xb6fa6620. <br>
+          <a href="http://www.hwreblog.com/style/debugging_lib/bn_foo_break.png"><img src="http://www.hwreblog.com/style/debugging_lib/bn_foo_break.png"></a> <br>
+          Analyzing the library in Binary Ninja we see the 0x620 offset is in foo() after the stack is has been saved going into the function call. We can now use this information to calculate where we should offset the starting address, 0xb6fa6620 - 0x620 = 0xb6fa6000. <br>
+          While Binary Ninja has no obvious way to rebase the binary using the user interface, it does have an api call that seems to do the trick. While thery don't give an example or discription of the call, <a href="https://api.binary.ninja/binaryninja.binaryview-module.html#binaryninja.binaryview.BinaryView.add_auto_segment">add_auto_segment</a> seems to copy data from the current selected file, and give it an offset. In this instance, for add_auto_segment(self, start, length, data_offset, data_length, flags): start will be our offset address of 0xb6fa6000, length will be the original file length, data_offset will be 0, and data_length will be the original file length. I also pass in 0xff for flags to make the segment writable, readable, and executable. The final command will be 'bv.add_auto_segment(0xb6fa6000, 0x6a0, 0, 0x6a0, 0xFF)'. Below you can see the results of running the command in Binary Ninja's python console. <br>
+          <a href="http://www.hwreblog.com/style/debugging_lib/segments_1.png"><img src="http://www.hwreblog.com/style/debugging_lib/segments_1.png"></a> <br>
+        </p>
 
-        
+        <p>Creating functions in the new segment is the last step before we can continue with the dynamic analysis. Doing this is as easy as scrolling to the offset of the function in Binary Ninja's linear view in the new segment and pressing 'p'. Binary Ninja will analyze the newly created function, and do recursive analyzis of the calls in the new segment. I have not yet been able to get the linear sweep analysis mode to work, however this could be an alternative. Below, you can see the original foo() compared to the offset foo().
+         <a href="http://www.hwreblog.com/style/debugging_lib/foo_org.png"><img src="http://www.hwreblog.com/style/debugging_lib/foo_org.png"></a> <br>
+         <a href="http://www.hwreblog.com/style/debugging_lib/foo_new_offset.png"><img src="http://www.hwreblog.com/style/debugging_lib/foo_new_offset.png"></a> <br>
+        </p>
+
+        <h4>Wrapping up and what happens next</h4>
+        <p>I have the offset calculated, functions created at the offset, and now I am ready to continue with dynamic analysis. First I need to stop syncing and resync with the shared library disassembled instance in Binary Ninja. Once I do that I can begin to step though in gdb and see the current instruction highlighted as before. 
+          <a href="http://www.hwreblog.com/style/debugging_lib/st1.png"><img src="http://www.hwreblog.com/style/debugging_lib/st1.png"></a> <br>
+          <a href="http://www.hwreblog.com/style/debugging_lib/st2.png"><img src="http://www.hwreblog.com/style/debugging_lib/st2.png"></a> <br>
+          <a href="http://www.hwreblog.com/style/debugging_lib/st3.png"><img src="http://www.hwreblog.com/style/debugging_lib/st3.png"></a> <br>
+        </p>
+
 
       </div>
     </div>
