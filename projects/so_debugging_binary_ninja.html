@@ -35,11 +35,16 @@
       <div id="content">
         <!-- insert the page content here -->
         <h1>Debugging Shared Libraries with Binary Ninja</h1>
-        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the file or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>.
+        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the file or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>, <a href="https://github.com/snare/voltron">Voltron/a>, and the plugin for Binary Ninja <a href="https://github.com/snare/binjatron">binjatron</a>.
         </p>
 
-        <h3>Setup</h3>
-        <p>Since most of my work involves embedded system RE, this example will 
+        <h4>Setup</h4>
+        <p>Since most of my work involves embedded system RE, this example will focus on an approach that would be used for remote debugging. I will include the setup process on the target side for repeatability purposes. However, this process will be depenant upon what interfaces you have avaliable on your target. In this case, my target will be a Raspberry Pi running Linux raspberrypi 4.14.50+. I have installed gdbserver though the raspbian repo. 
+        </p>
+        <p>The example program is straight forward enough. A simple shared library compiled with '-fpic -c' and '-shared'. A main program which calls a function in the shared library which is then compiled with the location and name of the library. Below shows the results and source.
+        <center><a href="http://www.hwreblog.com/style/setup/foo.png"><img src="http://www.hwreblog.com/style/setup/foo.png"></a> </center>
+        <center><a href="http://www.hwreblog.com/style/setup/main.png"><img src="http://www.hwreblog.com/style/setup/main.png"></a> </center>
+        <center><a href="http://www.hwreblog.com/style/setup/compile.png"><img src="http://www.hwreblog.com/style/setup/compile.png"></a> </center>
         </p>
 
 
