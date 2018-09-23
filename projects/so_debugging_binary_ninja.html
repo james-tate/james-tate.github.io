@@ -6,14 +6,6 @@
   <meta name="description" content="HWREBLOG embedded system design and reverse engineering" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="http://hwreblog.com/style/style.css" title="style" />
-<!--   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-8307049471360803",
-          enable_page_level_ads: true
-     });
-</script> -->
 </head>
 
 <script>
@@ -42,8 +34,12 @@
 
       <div id="content">
         <!-- insert the page content here -->
-        <h1>Welcome to the Hardware Reverse Engineering Blog</h1>
-        <p>Hi! My name is James and I am a Computer Engineer. This site contains some of my personal projects and interest. 
+        <h1>Debugging Shared Libraries with Binary Ninja</h1>
+        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the file or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>.
+        </p>
+
+        <h3>Setup</h3>
+        <p>Since most of my work involves embedded system RE, this example will 
         </p>
 
 
