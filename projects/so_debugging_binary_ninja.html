@@ -35,16 +35,39 @@
       <div id="content">
         <!-- insert the page content here -->
         <h1>Debugging Shared Libraries with Binary Ninja</h1>
-        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the file or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>, <a href="https://github.com/snare/voltron">Voltron/a>, and the plugin for Binary Ninja <a href="https://github.com/snare/binjatron">binjatron</a>.
+        <p>Performing dynamic analysis on embedded systems firmware can greatly improve the speed and efficiency of the reverse engineering process. Disassemblers are essential for static analysis, but can also be used during dynamic analysis. While debugging during dynamic analysis is usually pretty straight forward in most decompilers, it can be difficult to understand exactly what happens when the application or process you are working on jumps to a shared library. Being able to follow that shared library jump in the disassembler could allow you to better understand the program flow, and could help with patching the shared library if needed. There are a few issues that need to be solved before this is possible. First the memory location of the shared library will be unknown until the application or process has been started, and second the disassembler will treat the application and shared library as seperate instances. So in order to use the disassembler for debugging while running dynamic analysis we will need a way to work around these issues. Below, I will introduce a simple technique for performing dynamic analysis of shared libraries using <a href="https://binary.ninja/">Binary Ninja</a>, 
+          <a href="https://github.com/snare/voltron">Voltron</a>, and the plugin for Binary Ninja 
+            <a href="https://github.com/snare/binjatron">binjatron</a>.
         </p>
 
         <h4>Setup</h4>
-        <p>Since most of my work involves embedded system RE, this example will focus on an approach that would be used for remote debugging. I will include the setup process on the target side for repeatability purposes. However, this process will be depenant upon what interfaces you have avaliable on your target. In this case, my target will be a Raspberry Pi running Linux raspberrypi 4.14.50+. I have installed gdbserver though the raspbian repo. 
+        <p>Since most of my work involves embedded system RE, this example will focus on an approach that would be used for remote debugging. I will include the setup process on the target side for repeatability purposes. However, this process will be dependant upon the interfaces you have avaliable on your target. In this case, my target will be a Raspberry Pi running Linux raspberrypi 4.14.50+. I have installed gdbserver though the raspbian repo and I will use a tcp connection to connect to the gdbserver. I also have Binary Ninja, Voltron, and binjatron installed on my analysis computer. The installation process for Voltron or binjatron can be viewed on their github pages.
         </p>
-        <p>The example program is straight forward enough. A simple shared library compiled with '-fpic -c' and '-shared'. A main program which calls a function in the shared library which is then compiled with the location and name of the library. Below shows the results and source.
-        <center><a href="http://www.hwreblog.com/style/setup/foo.png"><img src="http://www.hwreblog.com/style/setup/foo.png"></a> </center>
-        <center><a href="http://www.hwreblog.com/style/setup/main.png"><img src="http://www.hwreblog.com/style/setup/main.png"></a> </center>
-        <center><a href="http://www.hwreblog.com/style/setup/compile.png"><img src="http://www.hwreblog.com/style/setup/compile.png"></a> </center>
+        <p>The example program is straight forward. A simple shared library compiled with '-fpic -c' and '-shared'. A main program which calls a function in the shared library which is then compiled with the location and name of the library. Below shows the results and source.
+        <a href="http://www.hwreblog.com/style/setup/foo.png"><img src="http://www.hwreblog.com/style/setup/foo.png"></a> <br>
+        <a href="http://www.hwreblog.com/style/setup/main.png"><img src="http://www.hwreblog.com/style/setup/main.png"></a> <br>
+        <a href="http://www.hwreblog.com/style/setup/compile.png"><img src="http://www.hwreblog.com/style/setup/compile.png"></a> <br><br>
+        After compiling LD_LIBRARY_PATH is set and the program is run. I also run 'ldd' to verify that libfoo is linked dynamicly. 
+        <a href="http://www.hwreblog.com/style/setup/running.png"><img src="http://www.hwreblog.com/style/setup/running.png"></a> <br>
+        <a href="http://www.hwreblog.com/style/setup/ldd.png"><img src="http://www.hwreblog.com/style/setup/ldd.png"></a> <br>
+        </p>
+
+        <p>I then pull these programs into Binary Ninja and verify things look correct. Below we can see the main program, and the foo shared library loaded into binary ninja.<br>
+        <a href="http://www.hwreblog.com/style/bn_setup/bn_load.png"><img src="http://www.hwreblog.com/style/bn_setup/bn_load.png" style="width:1000px; height:500px"></a> <br>
+        <a href="http://www.hwreblog.com/style/bn_setup/lib_dis.png"><img src="http://www.hwreblog.com/style/bn_setup/lib_dis.png"></a> <br><br>
+        Everything looks correct so now I can start the gdbserver on the target using 'gdbserver host:2345 main, and connect to session using '<a href="https://www.linaro.org/latest/downloads/">arm-linux-gnueabihf-gdb</a>' and 'target remote target-ip:2345'.<br>
+        <a href="http://www.hwreblog.com/style/bn_setup/gdb_connection.png"><img src="http://www.hwreblog.com/style/bn_setup/gdb_connection.png" style="width:1000px; height:350px"></a> <br>
+        </p>
+
+        <p>After the connection has been made, we can go back to Binary Ninja and sync to the Voltron session. 
+          <a href="http://www.hwreblog.com/style/bn_setup/voltron_sync.png"><img src="http://www.hwreblog.com/style/bn_setup/voltron_sync.png" style="width:1000px; height:500px"></a> <br><br>
+          In order to verify the sync is working correctly, we can set a breakpoint in main and step though.
+          <a href="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png"><img src="http://www.hwreblog.com/style/bn_setup/voltron_breakpoint.png" style="width:1000px; height:500px"></a> <br>
+          As we step though the program in gdb, binjatron will highlight the current PC in Binary Ninja which can be seen below.<br>
+          <a href="http://www.hwreblog.com/style/bn_setup/st1.png"><img src="http://www.hwreblog.com/style/bn_setup/st1.png"></a> <br>
+          <a href="http://www.hwreblog.com/style/bn_setup/st2.png"><img src="http://www.hwreblog.com/style/bn_setup/st2.png"></a> <br>
+          <a href="http://www.hwreblog.com/style/bn_setup/st3.png"><img src="http://www.hwreblog.com/style/bn_setup/st3.png"></a> <br><br>
+          If we continue this until we get to foo() in plt setting up to make the external function call. More information on this can be found in this <a href="https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html">article</a>.
         </p>
 
 
