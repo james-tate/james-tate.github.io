@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"navigatableRemoved","comment":"","params":[{"type_long":"ghidra.app.nav.Navigatable","name":"navigatable","comment":"","type_short":"Navigatable"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"NavigatableRemovalListener","comment":"","fields":[]}

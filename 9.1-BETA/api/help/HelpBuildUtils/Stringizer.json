@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":true,"methods":[{"javadoc":"","static":false,"name":"stringize","comment":"","params":[{"type_long":"T","name":"obj","comment":"","type_short":"T"}],"throws":[],"return":{"type_long":"java.lang.String","comment":"","type_short":"String"}}],"name":"Stringizer","comment":"","fields":[]}

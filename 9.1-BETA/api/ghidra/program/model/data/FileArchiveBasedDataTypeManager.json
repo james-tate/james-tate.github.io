@@ -1,0 +1,1 @@
+{"implements":["ghidra.program.model.data.FileBasedDataTypeManager"],"javadoc":"Extends DataTypeManager to provide methods specific to file data type archives (.gdt).","static":false,"methods":[],"name":"FileArchiveBasedDataTypeManager","comment":"Extends DataTypeManager to provide methods specific to file data type archives (.gdt).","fields":[]}

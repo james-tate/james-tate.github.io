@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"contains","comment":"","params":[{"type_long":"int","name":"c","comment":"","type_short":"int"}],"throws":[],"return":{"type_long":"boolean","comment":"","type_short":"boolean"}}],"name":"CharSetRecognizer","comment":"","fields":[]}

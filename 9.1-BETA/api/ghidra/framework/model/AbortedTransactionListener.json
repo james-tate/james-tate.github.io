@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"transactionAborted","comment":"","params":[{"type_long":"long","name":"transactionID","comment":"","type_short":"long"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"AbortedTransactionListener","comment":"","fields":[]}

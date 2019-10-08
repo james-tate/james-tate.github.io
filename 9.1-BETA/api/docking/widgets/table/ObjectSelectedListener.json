@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"objectSelected","comment":"","params":[{"type_long":"T","name":"t","comment":"","type_short":"T"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"ObjectSelectedListener","comment":"","fields":[]}

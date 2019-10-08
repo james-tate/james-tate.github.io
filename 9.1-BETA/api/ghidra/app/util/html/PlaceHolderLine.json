@@ -1,0 +1,1 @@
+{"implements":["ghidra.app.util.html.ValidatableLine"],"javadoc":"Marker interface for lines that are generic place holders for diffing","static":false,"methods":[],"name":"PlaceHolderLine","comment":"Marker interface for lines that are generic place holders for diffing","fields":[]}

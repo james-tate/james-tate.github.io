@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":true,"methods":[{"javadoc":"","static":false,"name":"handleKeyEvent","comment":"","params":[{"type_long":"java.awt.event.KeyEvent","name":"event","comment":"","type_short":"KeyEvent"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"KeyAction","comment":"","fields":[]}

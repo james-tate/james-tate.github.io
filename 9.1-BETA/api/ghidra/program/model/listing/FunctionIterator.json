@@ -1,0 +1,1 @@
+{"implements":["java.util.Iterator","java.lang.Iterable"],"javadoc":"Interface for iterating over functions.\n@see CollectionUtils#asIterable","static":false,"methods":[],"name":"FunctionIterator","comment":"Interface for iterating over functions.","fields":[]}

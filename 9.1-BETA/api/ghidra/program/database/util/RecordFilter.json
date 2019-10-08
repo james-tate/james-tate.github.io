@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"matches","comment":"","params":[{"type_long":"db.Record","name":"record","comment":"","type_short":"Record"}],"throws":[],"return":{"type_long":"boolean","comment":"","type_short":"boolean"}}],"name":"RecordFilter","comment":"","fields":[]}

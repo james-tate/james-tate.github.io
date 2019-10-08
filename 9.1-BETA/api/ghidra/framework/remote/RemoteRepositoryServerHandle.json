@@ -1,0 +1,1 @@
+{"implements":["ghidra.framework.remote.RepositoryServerHandle","java.rmi.Remote"],"javadoc":"<code>RepositoryServerHandle<\/code> provides access to a remote repository server via RMI.","static":false,"methods":[],"name":"RemoteRepositoryServerHandle","comment":"RepositoryServerHandle provides access to a remote repository server via RMI.","fields":[]}

@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"apply","comment":"","params":[{"type_long":"java.lang.String","name":"s","comment":"","type_short":"String"}],"throws":[],"return":{"type_long":"T","comment":"","type_short":"T"}}],"name":"StringTransformer","comment":"","fields":[]}

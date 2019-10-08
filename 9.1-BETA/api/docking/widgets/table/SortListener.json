@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"modelSorted","comment":"","params":[{"type_long":"docking.widgets.table.TableSortState","name":"sortState","comment":"","type_short":"TableSortState"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"SortListener","comment":"","fields":[]}
