@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"extends":"ghidra.pcode.opbehavior.OpBehavior","methods":[{"javadoc":"","static":false,"name":"<init>","comment":"","params":[{"type_long":"int","name":"opcode","comment":"","type_short":"int"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"SpecialOpBehavior","comment":"","fields":[]}

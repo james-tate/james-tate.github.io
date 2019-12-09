@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"transform","comment":"","params":[{"type_long":"T","name":"t","comment":"","type_short":"T"}],"throws":[],"return":{"type_long":"java.util.List<java.lang.String>","comment":"","type_short":"List"}}],"name":"FilterTransformer","comment":"","fields":[]}

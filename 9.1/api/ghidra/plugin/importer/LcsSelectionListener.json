@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"valueChanged","comment":"","params":[{"type_long":"ghidra.plugin.importer.LcsSelectionEvent","name":"e","comment":"","type_short":"LcsSelectionEvent"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"LcsSelectionListener","comment":"","fields":[]}

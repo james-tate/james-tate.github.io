@@ -1,0 +1,1 @@
+{"implements":["ghidra.program.model.symbol.Reference"],"javadoc":"Reference object for entry points","static":false,"methods":[],"name":"EntryPointReference","comment":"Reference object for entry points","fields":[]}

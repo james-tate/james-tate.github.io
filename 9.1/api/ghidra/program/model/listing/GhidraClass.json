@@ -1,0 +1,1 @@
+{"implements":["ghidra.program.model.symbol.Namespace"],"javadoc":"Interface for representing class objects in the program.","static":false,"methods":[],"name":"GhidraClass","comment":"Interface for representing class objects in the program.","fields":[]}

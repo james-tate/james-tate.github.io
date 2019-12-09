@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"accepts","comment":"","params":[{"type_long":"java.lang.Class<?>","name":"c","comment":"","type_short":"Class"}],"throws":[],"return":{"type_long":"boolean","comment":"","type_short":"boolean"}}],"name":"ClassFilter","comment":"","fields":[]}

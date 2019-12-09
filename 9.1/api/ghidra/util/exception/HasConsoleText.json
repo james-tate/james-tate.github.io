@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"getConsoleText","comment":"","params":[],"throws":[],"return":{"type_long":"java.lang.String","comment":"","type_short":"String"}}],"name":"HasConsoleText","comment":"","fields":[]}

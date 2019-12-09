@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"setBusy","comment":"","params":[{"type_long":"boolean","name":"busy","comment":"","type_short":"boolean"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"BusyListener","comment":"","fields":[]}

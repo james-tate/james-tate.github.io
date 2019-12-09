@@ -1,0 +1,1 @@
+{"implements":["ghidra.framework.model.UndoableDomainObject","ghidra.app.merge.DataTypeManagerOwner"],"javadoc":"","static":false,"methods":[],"name":"DataTypeManagerDomainObject","comment":"","fields":[]}

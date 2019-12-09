@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"stringFound","comment":"","params":[{"type_long":"ghidra.program.util.string.FoundString","name":"foundString","comment":"","type_short":"FoundString"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"FoundStringCallback","comment":"","fields":[]}

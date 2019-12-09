@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"issueReported","comment":"","params":[{"type_long":"ghidra.util.Issue","name":"issue","comment":"","type_short":"Issue"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"IssueListener","comment":"","fields":[]}

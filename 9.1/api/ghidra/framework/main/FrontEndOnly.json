@@ -1,0 +1,1 @@
+{"implements":["ghidra.framework.main.FrontEndable"],"javadoc":"Marker interface to indicate plugin is for Front-end use only.","static":false,"methods":[],"name":"FrontEndOnly","comment":"Marker interface to indicate plugin is for Front-end use only.","fields":[]}

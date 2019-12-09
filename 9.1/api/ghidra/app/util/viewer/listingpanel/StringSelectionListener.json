@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"setStringSelection","comment":"","params":[{"type_long":"java.lang.String","name":"string","comment":"","type_short":"String"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"StringSelectionListener","comment":"","fields":[]}

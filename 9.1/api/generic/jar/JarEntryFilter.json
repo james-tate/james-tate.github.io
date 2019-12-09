@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"accepts","comment":"","params":[{"type_long":"java.util.jar.JarEntry","name":"jarEntry","comment":"","type_short":"JarEntry"}],"throws":[],"return":{"type_long":"boolean","comment":"","type_short":"boolean"}}],"name":"JarEntryFilter","comment":"","fields":[]}

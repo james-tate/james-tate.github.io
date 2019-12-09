@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":true,"methods":[{"javadoc":"","static":false,"name":"message","comment":"","params":[{"type_long":"java.lang.String","name":"msg","comment":"","type_short":"String"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"ValidationMessageListener","comment":"","fields":[]}

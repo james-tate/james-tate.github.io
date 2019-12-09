@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"Memory Constants","static":false,"methods":[],"name":"MemoryConstants","comment":"Memory Constants","fields":[{"type_long":"java.lang.String","javadoc":"","static":true,"name":"HEAP_BLOCK_NAME","comment":"","type_short":"String","constant_value":"\"__HEAP__\""}]}

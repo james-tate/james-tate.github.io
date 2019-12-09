@@ -1,0 +1,1 @@
+{"implements":["ghidra.program.model.data.DomainFileBasedDataTypeManager"],"javadoc":"Extends DataTypeManager to provide methods specific to project data type archives.","static":false,"methods":[],"name":"ProjectArchiveBasedDataTypeManager","comment":"Extends DataTypeManager to provide methods specific to project data type archives.","fields":[]}

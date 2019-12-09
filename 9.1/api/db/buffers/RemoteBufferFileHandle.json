@@ -1,0 +1,1 @@
+{"implements":["db.buffers.BufferFileHandle","java.rmi.Remote"],"javadoc":"<code>RemoteBufferFileHandle<\/code> facilitates access to a remote BufferFile\n via RMI.","static":false,"methods":[],"name":"RemoteBufferFileHandle","comment":"RemoteBufferFileHandle facilitates access to a remote BufferFile\n via RMI.","fields":[]}

@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"<code>UserData<\/code> is a marker interface for\n DomainObjects used to store user-data associated with\n another DomainObject.","static":false,"methods":[],"name":"UserData","comment":"UserData is a marker interface for\n DomainObjects used to store user-data associated with\n another DomainObject.","fields":[]}

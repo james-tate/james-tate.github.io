@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":false,"methods":[{"javadoc":"","static":false,"name":"accept","comment":"","params":[{"type_long":"generic.jar.ResourceFile","name":"file","comment":"","type_short":"ResourceFile"}],"throws":[],"return":{"type_long":"boolean","comment":"","type_short":"boolean"}}],"name":"ResourceFileFilter","comment":"","fields":[]}

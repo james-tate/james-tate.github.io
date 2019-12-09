@@ -1,0 +1,1 @@
+{"implements":[],"javadoc":"","static":true,"methods":[{"javadoc":"","static":false,"name":"register","comment":"","params":[{"type_long":"java.lang.String","name":"name","comment":"","type_short":"String"}],"throws":[],"return":{"type_long":"void","comment":"","type_short":"void"}}],"name":"RegisterHook","comment":"","fields":[]}
